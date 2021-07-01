@@ -62,3 +62,5 @@
   file:
     path: "/home/{{admin_user}}/.kube/config"
     mode: 0600
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
