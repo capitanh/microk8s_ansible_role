@@ -1,7 +1,7 @@
 ---
 # Install a snap with classic confinement
 - name: Install required snaps
-  snap:
+  community.general.snap:
     classic: yes
     name: microk8s
     channel: 1.21/stable
