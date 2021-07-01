@@ -2,8 +2,9 @@
 # Install a snap with classic confinement
 - name: Install required snaps
   snap:
-    #classic: yes
+    classic: yes
     name: microk8s
+    channel: 1.21/stable
     #  - helm
 
 - name: Add admin user to microk8s group
