@@ -39,7 +39,6 @@
     - iptables-persistent
 
 - name: Make sure pods have access to internet
-  #command: iptables -P FORWARD ACCEPT
   iptables:
     chain: FORWARD
     policy: ACCEPT
