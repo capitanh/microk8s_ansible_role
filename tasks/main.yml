@@ -1,0 +1,59 @@
+---
+# Install a snap with classic confinement
+- name: Install required snap packages
+  snap:
+    name: "{{item}}"
+    classic: yes
+  with_items:
+    - microk8s
+    - helm
+
+- name: Add admin user to microk8s group
+  user:
+    name: "{{admin_user}}"
+    groups: microk8s
+    append: yes
+
+- name: Create kubectl alias
+  command: snap alias microk8s.kubectl kc
+  become: true
+
+- name: Enable kubectl autocompletion
+  lineinfile:
+    path: "/home/{{admin_user}}/.zshrc"
+    line: source <(microk8s.kubectl completion zsh | sed "s/kubectl/kc/g")
+    create: yes
+
+- name: Enable microk8s services
+  command: "microk8s enable {{item}}"
+  with_items:
+  - dns
+  - storage
+  - ingress
+  - traefik
+  - dashboard
+
+- name: Make iptables changes persistent
+  apt:
+    name: "{{packages}}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+    - iptables-persistent
+
+- name: Make sure pods have access to internet
+  #command: iptables -P FORWARD ACCEPT
+  iptables:
+    chain: FORWARD
+    policy: ACCEPT
+
+- name: Create kube config folder
+  file:
+    path: "/home/{{admin_user}}/.kube"
+    state: directory
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+
+- name: Generate kubeconfig
+  shell: "microk8s config > /home/{{admin_user}}/.kube/config"
