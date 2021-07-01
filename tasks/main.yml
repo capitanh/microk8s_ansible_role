@@ -4,7 +4,7 @@
   community.general.snap:
     classic: yes
     name: microk8s
-    state: present
+    channel: 1.18/stable
     #  - helm
 
 - name: Add admin user to microk8s group
