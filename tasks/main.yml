@@ -1,11 +1,11 @@
 ---
 - name: Install required snaps
-  become: yes
   snap:
     classic: yes
-    name:
-      #- microk8s
-      - helm
+    name: "{{item}}"
+  with_items:
+    - microk8s
+    - helm
 
 - name: Add admin user to microk8s group
   user:
