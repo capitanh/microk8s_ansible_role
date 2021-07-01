@@ -1,11 +1,11 @@
 ---
 # Install a snap with classic confinement
 - name: Install required snaps
-  community.general.snap:
-    classic: yes
-    name: microk8s
-    #  - helm
   become: yes
+  snap:
+    name: microk8s
+    classic: yes
+    #  - helm
 
 - name: Add admin user to microk8s group
   user:
