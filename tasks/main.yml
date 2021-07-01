@@ -1,7 +1,6 @@
 ---
 - name: Install required snaps
   snap:
-    classic: yes
     name:
     - microk8s
     - helm
