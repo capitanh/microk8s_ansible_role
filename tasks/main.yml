@@ -2,7 +2,7 @@
 # Install a snap with classic confinement
 - name: Install required snaps
   snap:
-    classic: yes
+    #classic: yes
     name: microk8s
     #  - helm
 
