@@ -28,8 +28,6 @@
   - dns
   - storage
   - ingress
-  - traefik
-  - dashboard
 
 - name: Make iptables changes persistent
   apt:
