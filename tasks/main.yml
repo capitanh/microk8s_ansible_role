@@ -2,9 +2,8 @@
 # Install a snap with classic confinement
 - name: Install required snap packages
   snap:
-    name: "{{item}}"
-    classic: yes
-  with_items:
+    #classic: yes
+    name:
     - microk8s
     - helm
 
