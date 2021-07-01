@@ -57,3 +57,8 @@
 
 - name: Generate kubeconfig
   shell: "microk8s config > /home/{{admin_user}}/.kube/config"
+
+- name: Make kube config not world-readable
+  file:
+    path: "/home/{{admin_user}}/.kube/config"
+    mode: 0600
