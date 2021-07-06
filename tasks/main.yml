@@ -28,6 +28,7 @@
   - dns
   - storage
   - ingress
+  - host-access
 
 - name: Make iptables changes persistent
   apt:
