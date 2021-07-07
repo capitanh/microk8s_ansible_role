@@ -5,12 +5,14 @@
     name: 
     - microk8s
     - helm
+  become: true
 
 - name: Add admin user to microk8s group
   user:
     name: "{{admin_user}}"
     groups: microk8s
     append: yes
+  become: true
 
 - name: Create kubectl alias
   command: snap alias microk8s.kubectl kc
