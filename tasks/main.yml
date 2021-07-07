@@ -1,6 +1,6 @@
 ---
 - name: Install required snaps
-  snap:
+  community.general.snap:
     classic: yes
     name:
     - microk8s
