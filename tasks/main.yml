@@ -5,7 +5,6 @@
     name: 
     - microk8s
     - helm
-  become: true
 
 - name: Add admin user to microk8s group
   user:
