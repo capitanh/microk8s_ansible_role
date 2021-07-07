@@ -3,7 +3,7 @@
   snap:
     classic: yes
     name: microk8s
-    channel: 1.21/stable
+    channel: 1.18/stable
   become: yes
 
 - name: Add admin user to microk8s group
