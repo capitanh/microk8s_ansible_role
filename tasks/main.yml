@@ -28,6 +28,7 @@
   - storage
   - ingress
   - host-access
+  - registry
 
 - name: Make iptables changes persistent
   apt:
