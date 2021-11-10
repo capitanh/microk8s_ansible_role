@@ -1,2 +1,8 @@
 ---
-
+microk8s_services:
+  - dns
+  - storage
+  - ingress
+  - host-access
+  - registry
+  - linkerd

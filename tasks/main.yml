@@ -23,12 +23,7 @@
 
 - name: Enable microk8s services
   command: "microk8s enable {{item}}"
-  with_items:
-  - dns
-  - storage
-  - ingress
-  - host-access
-  - registry
+  with_items: "{{microk8s_services}}"
 
 - name: Make iptables changes persistent
   apt:
