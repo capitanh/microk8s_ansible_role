@@ -3,7 +3,7 @@
   snap:
     classic: yes
     name: microk8s
-    channel: 1.25
+    #channel: 1.25
 
 - name: Install helm
   snap:
