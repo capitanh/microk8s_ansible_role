@@ -1,10 +1,14 @@
 ---
-- name: Install required snaps
+- name: Install microk8s snap
   snap:
     classic: yes
-    name: 
-    - microk8s
-    - helm
+    name: microk8s
+    channel: 1.25
+
+- name: Install helm snap
+  snap:
+    classic: yes
+    name: helm
 
 - name: Add admin user to microk8s group
   user:
