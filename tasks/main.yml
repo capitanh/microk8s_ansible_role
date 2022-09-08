@@ -5,7 +5,7 @@
     name: microk8s
     channel: 1.25
 
-- name: Install helm snap
+- name: Install helm
   snap:
     classic: yes
     name: helm
