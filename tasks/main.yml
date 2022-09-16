@@ -5,7 +5,7 @@
 
 - name: Print
   debug:
-    var: CLUSTER_INFO
+    var: CLUSTER_INFO.stdout
 
 - name: Export cluster ca.crt vble
   set_fact:
@@ -15,71 +15,71 @@
   debug:
     var: CA_CRT
 
-- name: Install microk8s snap
-  snap:
-    classic: yes
-    name: microk8s
-    channel: 1.24/stable
-
-- name: Install helm
-  snap:
-    classic: yes
-    name: helm
-
-- name: Add admin user to microk8s group
-  user:
-    name: "{{admin_user}}"
-    groups: microk8s
-    append: yes
-
-- name: Create kubectl alias
-  command: snap alias microk8s.kubectl kc
-
-- name: Enable kubectl autocompletion
-  lineinfile:
-    path: "/home/{{admin_user}}/.zshrc"
-    line: source <(microk8s.kubectl completion zsh | sed "s/kubectl/kc/g")
-    create: yes
-
-- name: Enable microk8s services
-  command: "microk8s enable {{item}}"
-  with_items: "{{microk8s_services}}"
-
-- name: Make iptables changes persistent
-  apt:
-    name: "{{packages}}"
-    state: present
-    update_cache: yes
-  vars:
-    packages:
-    - iptables-persistent
-
-- name: Make sure pods have access to internet
-  iptables:
-    chain: FORWARD
-    policy: ACCEPT
-
-- name: Create kube config folder
-  file:
-    path: "/home/{{admin_user}}/.kube"
-    state: directory
-    owner: "{{admin_user}}"
-    group: "{{admin_user}}"
-
-- name: Generate kubeconfig
-  shell: "microk8s config > /home/{{admin_user}}/.kube/config"
-
-
-- name: Make kube config not world-readable
-  file:
-    path: "/home/{{admin_user}}/.kube/config"
-    mode: 0600
-    owner: "{{admin_user}}"
-    group: "{{admin_user}}"
-
-- name: Install k9s
-  unarchive:
-    src: "https://github.com/derailed/k9s/releases/download/{{k9s_version}}/k9s_Linux_x86_64.tar.gz"
-    dest: /usr/local/bin/
-    remote_src: yes
-    validate_certs: no
+#- name: Install microk8s snap
+#  snap:
+#    classic: yes
+#    name: microk8s
+#    channel: 1.24/stable
+#
+#- name: Install helm
+#  snap:
+#    classic: yes
+#    name: helm
+#
+#- name: Add admin user to microk8s group
+#  user:
+#    name: "{{admin_user}}"
+#    groups: microk8s
+#    append: yes
+#
+#- name: Create kubectl alias
+#  command: snap alias microk8s.kubectl kc
+#
+#- name: Enable kubectl autocompletion
+#  lineinfile:
+#    path: "/home/{{admin_user}}/.zshrc"
+#    line: source <(microk8s.kubectl completion zsh | sed "s/kubectl/kc/g")
+#    create: yes
+#
+#- name: Enable microk8s services
+#  command: "microk8s enable {{item}}"
+#  with_items: "{{microk8s_services}}"
+#
+#- name: Make iptables changes persistent
+#  apt:
+#    name: "{{packages}}"
+#    state: present
+#    update_cache: yes
+#  vars:
+#    packages:
+#    - iptables-persistent
+#
+#- name: Make sure pods have access to internet
+#  iptables:
+#    chain: FORWARD
+#    policy: ACCEPT
+#
+#- name: Create kube config folder
+#  file:
+#    path: "/home/{{admin_user}}/.kube"
+#    state: directory
+#    owner: "{{admin_user}}"
+#    group: "{{admin_user}}"
+#
+#- name: Generate kubeconfig
+#  shell: "microk8s config > /home/{{admin_user}}/.kube/config"
+#
+#
+#- name: Make kube config not world-readable
+#  file:
+#    path: "/home/{{admin_user}}/.kube/config"
+#    mode: 0600
+#    owner: "{{admin_user}}"
+#    group: "{{admin_user}}"
+#
+#- name: Install k9s
+#  unarchive:
+#    src: "https://github.com/derailed/k9s/releases/download/{{k9s_version}}/k9s_Linux_x86_64.tar.gz"
+#    dest: /usr/local/bin/
+#    remote_src: yes
+#    validate_certs: no
