@@ -9,7 +9,7 @@
 
 - name: Print
   debug:
-    var: CA_CRT.clusters[0].cluster.certificate-authority-data
+    var: CLUSTER_INFO.stdout.clusters[0].cluster.certificate-authority-data | from_yaml
 
 #- name: Export cluster ca.crt vble
 #  set_fact:
