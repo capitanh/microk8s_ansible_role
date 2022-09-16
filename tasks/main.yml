@@ -3,13 +3,13 @@
   shell: "microk8s config"
   register: CLUSTER_INFO
 
-#- name: Export value
-#  set_fact:
-#    CA_CRT: "{{CLUSTER_INFO.stdout | to_json}}"
+- name: Export value
+  set_fact:
+    CA_CRT: "{{CLUSTER_INFO.stdout | from_yaml}}"
 
 - name: Print
   debug:
-    var: CLUSTER_INFO.stdout | from_yaml
+    var: CA_CRT.clusters[0].cluster.certificate-authority-data
 
 #- name: Export cluster ca.crt vble
 #  set_fact:
