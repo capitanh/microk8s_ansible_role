@@ -53,6 +53,18 @@
 - name: Generate kubeconfig
   shell: "microk8s config > /home/{{admin_user}}/.kube/config"
 
+- name: Get cluster info
+  shell: "microk8s config"
+  register: CLUSTER_INFO
+
+- name: Export cluster ca.crt vble
+  set_fact:
+    CA_CRT: "{{CLUSTER_INFO.clusters[0].cluster.certificate-authority-data:}}"
+
+- name: Print ca
+  debug:
+    var: CA_CRT
+
 - name: Make kube config not world-readable
   file:
     path: "/home/{{admin_user}}/.kube/config"
