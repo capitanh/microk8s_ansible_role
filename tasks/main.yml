@@ -5,15 +5,15 @@
 
 - name: Print
   debug:
-    var: "{{CLUSTER_INFO.stdout | to_nice_json}}"
+    var: "{{CLUSTER_INFO.stdout.apiVersion}}"
 
-- name: Export cluster ca.crt vble
-  set_fact:
-    CA_CRT: "{{CLUSTER_INFO.clusters[0].cluster.certificate-authority-data:}}"
-
-- name: Print ca
-  debug:
-    var: CA_CRT
+#- name: Export cluster ca.crt vble
+#  set_fact:
+#    CA_CRT: "{{CLUSTER_INFO.clusters[0].cluster.certificate-authority-data:}}"
+#
+#- name: Print ca
+#  debug:
+#    var: CA_CRT
 
 #- name: Install microk8s snap
 #  snap:
