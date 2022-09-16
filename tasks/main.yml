@@ -5,7 +5,7 @@
 
 - name: Print
   debug:
-    var: "{{CLUSTER_INFO.stdout | to_nice_json}}"
+    var: "{{CLUSTER_INFO.stdout | to_yaml}}"
 
 #- name: Export cluster ca.crt vble
 #  set_fact:
