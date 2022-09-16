@@ -3,9 +3,12 @@
   shell: "microk8s config"
   register: CLUSTER_INFO
 
+  set_fact:
+    CA_CRT: "{{CLUSTER_INFO.stdout | to_json}}"
+
 - name: Print
   debug:
-    var: "{{CLUSTER_INFO.stdout | to_nice_yaml}}"
+    var: CA_CRT.apiVersion
 
 #- name: Export cluster ca.crt vble
 #  set_fact:
