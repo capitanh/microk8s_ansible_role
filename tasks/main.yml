@@ -9,7 +9,7 @@
 
 - name: Print
   debug:
-    var: CLUSTER_INFO.stdout
+    var: CLUSTER_INFO.stdout | from_yaml
 
 #- name: Export cluster ca.crt vble
 #  set_fact:
