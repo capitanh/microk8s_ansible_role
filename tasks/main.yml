@@ -9,7 +9,7 @@
 
 - name: Print
   debug:
-    var: CA_CRT.clusters[0].cluster.server
+    var: CA_CRT.clusters[0].cluster.certificate-authority-data
 
 #- name: Export cluster ca.crt vble
 #  set_fact:
