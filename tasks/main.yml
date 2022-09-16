@@ -9,7 +9,7 @@
 
 - name: Print
   debug:
-    var: CA_CRT.clusters[0]
+    var: CA_CRT.clusters[0].cluster
 
 #- name: Export cluster ca.crt vble
 #  set_fact:
