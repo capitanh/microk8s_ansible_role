@@ -68,17 +68,17 @@
 - name: Get CA certificate
   shell: "microk8s.kubectl config view --raw -o json | jq -r '.clusters[0].cluster.\"certificate-authority-data\"' | base64 -d"
   become_user: "{{admin_user}}"
-  register: CA_CRT
+  register: L_CA_CRT
 
 - name: Get cluster info
   kubernetes.core.k8s_cluster_info:
   become_user: "{{admin_user}}"
-  register: CLUSTER_INFO
+  register: L_CLUSTER_INFO
 
 - name: Export variables
   set_fact:
-    CLUSTER_INFO: "{{CLUSTER_INFO.stdout}}"
-    CA_CRT: "{{CA_CRT.stdout}}"
+    CLUSTER_INFO: "{{L_CLUSTER_INFO.stdout}}"
+    CA_CRT: "{{L_CA_CRT.stdout}}"
 
 - name: Install k9s
   unarchive:
