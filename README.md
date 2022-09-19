@@ -17,7 +17,7 @@ admin_user:                         # User account to use
 
 Dependencies
 ------------
-None
+* pip
 
 Example Playbook
 ----------------
