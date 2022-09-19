@@ -60,7 +60,7 @@
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
 
-- name: Export CA certificate (without BEGIN CERTIFICATE and END CERTIFICATE lines)
+- name: Export CA certificate
   shell: "microk8s.kubectl config view --raw -o json | jq -r '.clusters[0].cluster.\"certificate-authority-data\"' | base64 -d"
   become_user: "{{admin_user}}"
   register: CA_CRT
@@ -76,3 +76,8 @@
     dest: /usr/local/bin/
     remote_src: yes
     validate_certs: no
+
+- name: Install pip packages
+  pip:
+    name:
+      - kubernetes
