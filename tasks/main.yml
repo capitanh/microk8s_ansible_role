@@ -1,4 +1,9 @@
 ---
+- name: Install pip packages
+  pip:
+    name:
+      - kubernetes
+
 - name: Install microk8s snap
   snap:
     classic: yes
@@ -76,8 +81,3 @@
     dest: /usr/local/bin/
     remote_src: yes
     validate_certs: no
-
-- name: Install pip packages
-  pip:
-    name:
-      - kubernetes
