@@ -77,8 +77,8 @@
 
 - name: Export variables
   set_fact:
-    CLUSTER_INFO: "{{CLUSTER_INFO}}"
-    CA_CRT: "{{CA_CRT}}"
+    CLUSTER_INFO: "{{CLUSTER_INFO.stdout}}"
+    CA_CRT: "{{CA_CRT.stdout}}"
 
 - name: Install k9s
   unarchive:
