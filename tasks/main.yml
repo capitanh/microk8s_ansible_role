@@ -70,14 +70,18 @@
   become_user: "{{admin_user}}"
   register: L_CA_CRT
 
-- name: Get cluster info
-  kubernetes.core.k8s_cluster_info:
+- name: Get k8s service info for external API access
+  kubernetes.core.k8s_info:
+    api_version: v1
+    kind: Service
+    name: kubernetes
+    namespace: default
   become_user: "{{admin_user}}"
-  register: L_CLUSTER_INFO
+  register: L_K8S_SERVICE_INFO
 
 - name: Export variables
   set_fact:
-    CLUSTER_INFO: "{{L_CLUSTER_INFO.stdout}}"
+    K8S_SERVICE_INFO: "{{L_K8S_SERVICE_INFO.stdout}}"
     CA_CRT: "{{L_CA_CRT.stdout}}"
 
 - name: Install k9s
