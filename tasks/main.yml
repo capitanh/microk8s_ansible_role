@@ -65,6 +65,16 @@
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
 
+- name: Install k9s
+  unarchive:
+    src: "https://github.com/derailed/k9s/releases/download/{{k9s_version}}/k9s_Linux_x86_64.tar.gz"
+    dest: /usr/local/bin/
+    remote_src: yes
+    validate_certs: no
+
+###################################################################################
+# Export config values as facts for use in playbooks
+
 - name: Get CA certificate
   shell: "microk8s.kubectl config view --raw -o json | jq -r '.clusters[0].cluster.\"certificate-authority-data\"' | base64 -d"
   become_user: "{{admin_user}}"
@@ -81,12 +91,6 @@
 
 - name: Export variables
   set_fact:
-    K8S_SERVICE_INFO: "{{L_K8S_SERVICE_INFO.stdout}}"
+    K8S_SERVICE_INFO: "{{L_K8S_SERVICE_INFO}}"
     CA_CRT: "{{L_CA_CRT.stdout}}"
 
-- name: Install k9s
-  unarchive:
-    src: "https://github.com/derailed/k9s/releases/download/{{k9s_version}}/k9s_Linux_x86_64.tar.gz"
-    dest: /usr/local/bin/
-    remote_src: yes
-    validate_certs: no

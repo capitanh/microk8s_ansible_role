@@ -1,7 +1,7 @@
 Microk8s Ansible Role
 ==================
 This role installs microk8s and official helm3 package manager. Two variables are exported for use in the playbook:
-* CLUSTER_INFO
+* K8S_SERVICE_INFO
 * CA_CRT
 
 Requirements

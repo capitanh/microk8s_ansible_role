@@ -1,9 +1,13 @@
 ---
-# Default list of services to enable
-microk8s_services:
+k9s_version: v0.26.4              # k9s version
+microk8s_services:                # Default list of services to enable
   - dns
   - storage
   - ingress
   - host-access
+  - traefik
   - registry
-k9s_version: v0.26.3
+  - linkerd
+  - istio
+  - rbac
+
