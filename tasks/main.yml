@@ -98,5 +98,5 @@
 - name: Export variables
   set_fact:
     K8S_SERVICE_INFO: "{{L_K8S_SERVICE_INFO}}"
-    CA_CRT: "{{L_CA_CRT.stdout}}"
+    MICROK8S_CA_CRT: "{{L_CA_CRT.stdout}}"
 
