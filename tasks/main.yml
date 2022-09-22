@@ -76,6 +76,7 @@
   kubernetes.core.helm_plugin:
     state: present
     plugin_path: https://github.com/databus23/helm-diff
+  become_user: "{{admin_user}}"
 
 ###################################################################################
 # Export config values as facts for use in playbooks
