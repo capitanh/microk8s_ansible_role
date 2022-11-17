@@ -78,6 +78,22 @@
     remote_src: yes
     validate_certs: no
 
+- name: Create k9s config directory
+  file:
+    path: /home/{{admin_user}}/.config/k9s
+    state: directory
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0755
+
+- name: Copy k9s skin
+  copy:
+    src: skin.yml
+    dest: /home/{{admin_user}}/.config/k9s/
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0644    
+
 - name: Install Helm Diff
   kubernetes.core.helm_plugin:
     state: present
