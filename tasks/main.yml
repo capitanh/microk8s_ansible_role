@@ -22,15 +22,18 @@
     append: yes
 
 - name: Create kubectl alias
-  command: snap alias microk8s.kubectl kc
-
-- name: Create kubectl alias
   command: snap alias microk8s.kubectl kubectl
 
 - name: Enable kubectl autocompletion
   lineinfile:
     path: "/home/{{admin_user}}/.zshrc"
     line: source <(microk8s.kubectl completion zsh | sed "s/kubectl/kc/g")
+    create: yes
+
+- name: Create kc alias
+  lineinfile:
+    path: "/home/{{admin_user}}/.zshrc"
+    line: alias kc='kubectl'
     create: yes
 
 - name: Enable microk8s services
@@ -80,26 +83,3 @@
     state: present
     plugin_path: https://github.com/databus23/helm-diff
   become_user: "{{admin_user}}"
-
-###################################################################################
-# Export config values as facts for use in playbooks
-
-#- name: Get CA certificate
-#  shell: "microk8s.kubectl config view --raw -o json | jq -r '.clusters[0].cluster.\"certificate-authority-data\"' | base64 -d"
-#  become_user: "{{admin_user}}"
-#  register: L_CA_CRT
-#
-#- name: Get k8s service info for external API access
-#  kubernetes.core.k8s_info:
-#    api_version: v1
-#    kind: Service
-#    name: kubernetes
-#    namespace: default
-#  become_user: "{{admin_user}}"
-#  register: L_K8S_SERVICE_INFO
-#
-#- name: Export variables
-#  set_fact:
-#    K8S_SERVICE_INFO: "{{L_K8S_SERVICE_INFO}}"
-#    MICROK8S_CA_CRT: "{{L_CA_CRT.stdout}}"
-
