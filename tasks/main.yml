@@ -86,13 +86,16 @@
     group: "{{admin_user}}"
     mode: 0755
 
-- name: Copy k9s skin
+- name: Copy k9s skin and plugins
   copy:
-    src: skin.yml
+    src: "{{item}}"
     dest: /home/{{admin_user}}/.config/k9s/
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
-    mode: 0644    
+    mode: 0644
+  with_items:
+    - skin.yml
+    - plugin.yml
 
 - name: Install Helm Diff
   kubernetes.core.helm_plugin:
