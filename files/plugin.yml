@@ -1,0 +1,13 @@
+plugin:
+  # Use lnav as log viewer
+  lnav:
+    shortCut: Ctrl-L
+    confirm: false
+    description: "Logs lnav"
+    scopes:
+      - pods
+    command: bash
+    background: false
+    args:
+    - -c
+    - "kubectl -n $NAMESPACE logs -f $NAME | lnav"
