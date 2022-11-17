@@ -24,6 +24,9 @@
 - name: Create kubectl alias
   command: snap alias microk8s.kubectl kc
 
+- name: Create kubectl alias
+  command: snap alias microk8s.kubectl kubectl
+
 - name: Enable kubectl autocompletion
   lineinfile:
     path: "/home/{{admin_user}}/.zshrc"
