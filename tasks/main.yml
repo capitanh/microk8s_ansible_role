@@ -27,7 +27,7 @@
 - name: Enable kubectl autocompletion
   lineinfile:
     path: "/home/{{admin_user}}/.zshrc"
-    line: source <(microk8s.kubectl completion zsh | sed "s/kubectl/kc/g")
+    line: source <(microk8s.kubectl completion zsh)
     create: yes
 
 - name: Create kc alias
