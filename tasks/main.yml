@@ -21,8 +21,11 @@
     groups: microk8s
     append: yes
 
-- name: Create kubectl alias
+- name: Create kubectl snap alias
   command: snap alias microk8s.kubectl kubectl
+
+- name: Create helm snap alias
+  command: snap alias microk8s.helm3 helm
 
 - name: Enable kubectl autocompletion
   lineinfile:
@@ -30,11 +33,11 @@
     line: source <(microk8s.kubectl completion zsh)
     create: yes
 
-- name: Create kc alias
-  lineinfile:
-    path: "/home/{{admin_user}}/.zshrc"
-    line: alias kc='kubectl'
-    create: yes
+#- name: Create kc zsh alias
+#  lineinfile:
+#    path: "/home/{{admin_user}}/.zshrc"
+#    line: alias kc='kubectl'
+#    create: yes
 
 - name: Enable microk8s services
   command: "microk8s enable {{item}}"
