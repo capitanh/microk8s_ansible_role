@@ -21,6 +21,10 @@
     groups: microk8s
     append: yes
 
+- name: Enable microk8s services
+  command: "microk8s enable {{item}}"
+  with_items: "{{microk8s_services}}"
+
 - name: Create kubectl snap alias
   command: snap alias microk8s.kubectl kubectl
 
@@ -33,15 +37,11 @@
     line: source <(microk8s.kubectl completion zsh)
     create: yes
 
-#- name: Create kc zsh alias
-#  lineinfile:
-#    path: "/home/{{admin_user}}/.zshrc"
-#    line: alias kc='kubectl'
-#    create: yes
-
-- name: Enable microk8s services
-  command: "microk8s enable {{item}}"
-  with_items: "{{microk8s_services}}"
+- name: Create kc zsh alias
+  lineinfile:
+    path: "/home/{{admin_user}}/.zshrc"
+    line: alias kc='kubectl'
+    create: yes
 
 - name: Make iptables changes persistent
   apt:
