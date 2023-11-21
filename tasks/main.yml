@@ -28,9 +28,16 @@
 #- name: Create kubectl snap alias
 #  command: snap alias microk8s.kubectl kubectl
 
+- name: Get kubectl latest version
+  uri:
+    url: https://dl.k8s.io/release/stable.txt
+    return_content: true
+    validate_certs: no
+  register: KUBECTL_LATEST_VERSION
+
 - name: Install kubectl
   get_url:
-    url: https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+    url: "https://dl.k8s.io/release/{{KUBECTL_LATEST_VERSION}}/bin/linux/amd64/kubectl"
     dest: /usr/local/bin/kubectl
     owner: root
     group: root
