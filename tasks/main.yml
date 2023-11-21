@@ -33,14 +33,14 @@
     url: https://dl.k8s.io/release/stable.txt
     return_content: true
     validate_certs: no
-  register: KUBECTL_LATEST_VERSION
+  register: VERSION_INFO
 
 - debug:
     var: KUBECTL_LATEST_VERSION
 
 - name: Install kubectl
   get_url:
-    url: "https://dl.k8s.io/release/{{KUBECTL_LATEST_VERSION}}/bin/linux/amd64/kubectl"
+    url: "https://dl.k8s.io/release/{{VERSION_INFO.content}}/bin/linux/amd64/kubectl"
     dest: /usr/local/bin/kubectl
     owner: root
     group: root
