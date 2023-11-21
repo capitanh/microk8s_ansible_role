@@ -36,7 +36,7 @@
   register: KUBECTL_LATEST_VERSION
 
 - debug:
-  var: KUBECTL_LATEST_VERSION
+    var: KUBECTL_LATEST_VERSION
 
 - name: Install kubectl
   get_url:
