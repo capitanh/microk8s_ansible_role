@@ -35,7 +35,7 @@
     validate_certs: no
   register: KUBECTL_LATEST_VERSION
 
-. debug:
+- debug:
   var: KUBECTL_LATEST_VERSION
 
 - name: Install kubectl
