@@ -25,8 +25,17 @@
   command: "microk8s enable {{item}}"
   with_items: "{{microk8s_services}}"
 
-- name: Create kubectl snap alias
-  command: snap alias microk8s.kubectl kubectl
+#- name: Create kubectl snap alias
+#  command: snap alias microk8s.kubectl kubectl
+
+- name: Install kubectl
+  get_url:
+    url: https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    owner: root
+    group: root
+    mode: 0755
+    validate_certs: no  
 
 - name: Enable kubectl autocompletion
   lineinfile:
