@@ -35,9 +35,6 @@
     validate_certs: no
   register: VERSION_INFO
 
-- debug:
-    var: KUBECTL_LATEST_VERSION
-
 - name: Install kubectl
   get_url:
     url: "https://dl.k8s.io/release/{{VERSION_INFO.content}}/bin/linux/amd64/kubectl"
