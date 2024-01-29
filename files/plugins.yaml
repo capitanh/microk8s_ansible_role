@@ -1,4 +1,4 @@
-plugin:
+plugins:
   # Use lnav as log viewer
   lnav:
     shortCut: Ctrl-L

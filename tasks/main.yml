@@ -102,16 +102,29 @@
     group: "{{admin_user}}"
     mode: 0755
 
-- name: Copy k9s skin and plugins
+- name: Copy k9s skin
   copy:
-    src: "{{item}}"
+    src: transparent-skin.yaml
+    dest: /home/{{admin_user}}/.config/k9s/skins/transparent.yaml
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0644
+
+- name: Copy k9s plugins
+  copy:
+    src: plugins.yaml
     dest: /home/{{admin_user}}/.config/k9s/
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
     mode: 0644
-  with_items:
-    - skin.yml
-    - plugin.yml
+
+- name: Copy k9s config
+  copy:
+    src: k9s-config.yaml
+    dest: /home/{{admin_user}}/.config/k9s/config.yaml
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0644    
 
 - name: Install Helm Diff
   kubernetes.core.helm_plugin:
