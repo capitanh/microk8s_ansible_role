@@ -104,8 +104,8 @@
 
 - name: Copy k9s skin
   copy:
-    src: transparent-skin.yaml
-    dest: /home/{{admin_user}}/.config/k9s/skins/transparent.yaml
+    src: transparent.yaml
+    dest: /home/{{admin_user}}/.config/k9s/skins/
     owner: "{{admin_user}}"
     group: "{{admin_user}}"
     mode: 0644
