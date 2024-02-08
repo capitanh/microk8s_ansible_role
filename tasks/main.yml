@@ -132,7 +132,7 @@
     plugin_path: https://github.com/databus23/helm-diff
   become_user: "{{admin_user}}"
 
-- name: Download vcluster installer
+- name: Install vcluster
   get_url:
     url: https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-linux-amd64
     dest: /usr/local/bin/vcluster
