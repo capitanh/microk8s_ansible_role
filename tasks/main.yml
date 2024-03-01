@@ -140,3 +140,9 @@
     group: root
     mode: 0755
     validate_certs: no
+
+- name: Create vcluster zsh alias
+  lineinfile:
+    path: "/home/{{admin_user}}/.zshrc"
+    line: alias vc='vcluster'
+    create: yes
