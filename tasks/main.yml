@@ -25,10 +25,9 @@
   command: "microk8s enable {{item}}"
   with_items: "{{microk8s_services}}"
 
-- include_tasks:
-  - k9s.yml
-  - kubectl.yml
-  - vcluster.yml
+- imports_tasks: k9s.yml
+- imports_tasks: kubectl.yml
+- imports_tasks: vcluster.yml
 
 - name: Make iptables changes persistent
   apt:
