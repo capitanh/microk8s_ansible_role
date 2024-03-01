@@ -1,0 +1,39 @@
+---
+- name: Install k9s
+  unarchive:
+    src: "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz"
+    dest: /usr/local/bin/
+    remote_src: yes
+    validate_certs: no
+
+- name: Create k9s config directory
+  file:
+    path: /home/{{admin_user}}/.config/k9s
+    state: directory
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0755
+
+- name: Copy k9s skin
+  copy:
+    src: transparent.yaml
+    dest: /home/{{admin_user}}/.config/k9s/skins/
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0644
+
+- name: Copy k9s plugins
+  copy:
+    src: plugins.yaml
+    dest: /home/{{admin_user}}/.config/k9s/
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0644
+
+- name: Copy k9s config
+  copy:
+    src: k9s-config.yaml
+    dest: /home/{{admin_user}}/.config/k9s/config.yaml
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+    mode: 0644

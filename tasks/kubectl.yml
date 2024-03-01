@@ -1,0 +1,45 @@
+---
+- name: Get kubectl latest version
+  uri:
+    url: https://dl.k8s.io/release/stable.txt
+    return_content: true
+    validate_certs: no
+  register: VERSION_INFO
+
+- name: Install kubectl
+  get_url:
+    url: "https://dl.k8s.io/release/{{VERSION_INFO.content}}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    owner: root
+    group: root
+    mode: 0755
+    validate_certs: no
+
+- name: Enable kubectl autocompletion
+  lineinfile:
+    path: "/home/{{admin_user}}/.zshrc"
+    line: source <(microk8s.kubectl completion zsh)
+    create: yes
+
+- name: Create kc zsh alias
+  lineinfile:
+    path: "/home/{{admin_user}}/.zshrc"
+    line: alias kc='kubectl'
+    create: yes
+
+- name: Create kube config folder
+  file:
+    path: "/home/{{admin_user}}/.kube"
+    state: directory
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
+
+- name: Generate kubeconfig
+  shell: "microk8s config > /home/{{admin_user}}/.kube/config"
+
+- name: Make kube config not world-readable
+  file:
+    path: "/home/{{admin_user}}/.kube/config"
+    mode: 0600
+    owner: "{{admin_user}}"
+    group: "{{admin_user}}"
