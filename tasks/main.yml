@@ -40,8 +40,3 @@
   - kubectl.yml
   - vcluster.yml
   - helm.yml
-
-#- import_tasks: k9s.yml
-#- import_tasks: kubectl.yml
-#- import_tasks: vcluster.yml
-#- import_tasks: helm.yml
