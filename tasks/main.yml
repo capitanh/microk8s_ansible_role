@@ -34,7 +34,7 @@
     policy: ACCEPT
 
 - name: Install tools
-  import_tasks: "{{item}}"
+  include_tasks: "{{item}}"
   with_items:
   - k9s.yml
   - kubectl.yml
