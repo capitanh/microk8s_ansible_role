@@ -8,12 +8,6 @@
   snap:
     classic: yes
     name: microk8s
-    #channel: 1.24/stable
-
-- name: Install helm snap package
-  snap:
-    classic: yes
-    name: helm
 
 - name: Add admin user to microk8s group
   user:
@@ -24,10 +18,6 @@
 - name: Enable microk8s services
   command: "microk8s enable {{item}}"
   with_items: "{{microk8s_services}}"
-
-- import_tasks: k9s.yml
-- import_tasks: kubectl.yml
-- import_tasks: vcluster.yml
 
 - name: Make iptables changes persistent
   apt:
@@ -43,9 +33,7 @@
     chain: FORWARD
     policy: ACCEPT
 
-- name: Install Helm Diff
-  kubernetes.core.helm_plugin:
-    state: present
-    plugin_path: https://github.com/databus23/helm-diff
-  become_user: "{{admin_user}}"
-
+- import_tasks: k9s.yml
+- import_tasks: kubectl.yml
+- import_tasks: vcluster.yml
+- import_tasks: helm.yml
