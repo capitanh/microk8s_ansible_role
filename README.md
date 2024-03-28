@@ -1,6 +1,17 @@
 Microk8s Ansible Role
 ==================
-This role installs microk8s and official helm3 package manager.
+This role installs microk8s kubernetes distribution. The following services are enabled by default:
+* dns
+* storage
+* ingress
+* host-access
+
+You can select the enabled services by listing then in microk8s_services variable. 
+
+A few other tools are also installed:
+* k9s
+* helm
+* vclusters
 
 Requirements
 ------------
@@ -11,6 +22,11 @@ Role Variables
 Tne variables required by this role are:
 ```yaml
 admin_user:                         # User account to use
+microk8s_services:                  # Default list of services to enable
+  - dns
+  - storage
+  - ingress
+  - host-access
 ```
 
 Dependencies

@@ -1,5 +1,6 @@
 ---
 microk8s_services:                # Default list of services to enable
+  - community
   - dns
   - storage
   - ingress
