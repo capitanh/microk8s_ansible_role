@@ -15,6 +15,9 @@
     groups: microk8s
     append: yes
 
+- name: Enable community repository
+  command: microk8s enable community
+
 - name: Enable microk8s services
   command: "microk8s enable {{item}}"
   with_items: "{{microk8s_services}}"
