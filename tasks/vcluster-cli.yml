@@ -1,5 +1,5 @@
 ---
-- name: Install vcluster
+- name: Install vcluster CLI
   get_url:
     url: https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-linux-amd64
     dest: /usr/local/bin/vcluster
@@ -8,7 +8,7 @@
     mode: 0755
     validate_certs: no
 
-- name: Create vcluster zsh alias
+- name: Create vcluster-cli zsh alias
   lineinfile:
     path: "/home/{{admin_user}}/.zshrc"
     line: alias vc='vcluster'

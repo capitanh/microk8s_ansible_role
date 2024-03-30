@@ -41,5 +41,5 @@
   with_items:
   - k9s.yml
   - kubectl.yml
-  - vcluster.yml
+  - vcluster-cli.yml
   - helm.yml
