@@ -8,6 +8,7 @@
   snap:
     classic: yes
     name: microk8s
+    channel: "{{channel}}"
 
 - name: Add admin user to microk8s group
   user:

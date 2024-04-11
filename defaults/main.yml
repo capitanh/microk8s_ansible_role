@@ -1,5 +1,8 @@
 ---
-microk8s_services:                # Default list of services to enable
+channel: "latest"
+
+# Default list of services to enable
+microk8s_services:
   - dns
   - storage
   - ingress
