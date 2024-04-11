@@ -6,7 +6,7 @@ This role installs microk8s kubernetes distribution. The following services are 
 * ingress
 * host-access
 
-You can select the enabled services by listing then in microk8s_services variable. 
+You can select the enabled services by listing then in microk8s_services variable.
 
 A few other tools are also installed:
 * k9s
@@ -19,10 +19,11 @@ Shell completion and alias are for zsh, no bash config is affected
 
 Role Variables
 --------------
-Tne variables required by this role are:
+Tne variables for this role are:
 ```yaml
-admin_user:                         # User account to use
-microk8s_services:                  # Default list of services to enable
+channe: latest     # Which snap channel to use when installing microk8s, defaults to latest
+admin_user:        # User account to use
+microk8s_services: # Default list of services to enable
   - dns
   - storage
   - ingress
