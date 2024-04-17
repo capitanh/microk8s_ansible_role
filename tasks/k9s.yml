@@ -3,6 +3,9 @@
   unarchive:
     src: "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz"
     dest: /usr/local/bin/
+    creates: /usr/local/bin/k9s
+    include:
+    - k9s
     remote_src: yes
     validate_certs: no
 
