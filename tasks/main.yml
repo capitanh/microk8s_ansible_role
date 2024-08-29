@@ -1,8 +1,8 @@
 ---
-- name: Install pip packages
-  community.general.pipx:
+- name: Install k8s python api
+  ansible.builtin.apt:
     name:
-      - kubernetes
+      - python3-kubernetes
 
 - name: Install microk8s snap
   snap:
