@@ -1,6 +1,6 @@
 ---
 - name: Install pip packages
-  pip:
+  community.general.pipx:
     name:
       - kubernetes
 
