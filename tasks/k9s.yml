@@ -4,7 +4,7 @@
     src: "https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz"
     dest: /usr/local/bin/
     owner: root
-    group: root    
+    group: root
     creates: /usr/local/bin/k9s
     include:
     - k9s
