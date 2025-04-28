@@ -3,4 +3,4 @@ image:
   tag: v1.4.1
 reloader:
   isArgoRollouts: true
-  namespaceSelector: "*"
+  namespaceSelector: "development,staging,production"
