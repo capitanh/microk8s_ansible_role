@@ -44,3 +44,4 @@
   - kubectl.yml
   - vcluster-cli.yml
   - helm.yml
+  - reloader.yml

@@ -1,0 +1,5 @@
+# Ref: https://github.com/stakater/Reloader/blob/master/deployments/kubernetes/chart/reloader/values.yaml
+image:
+  tag: v1.4.1
+reloader:
+  isArgoRollouts: true
