@@ -2,5 +2,6 @@
 image:
   tag: v1.4.1
 reloader:
+  autoReloadAll: true
   isArgoRollouts: true
   #namespaceSelector: "development,staging,production"
