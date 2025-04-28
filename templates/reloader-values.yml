@@ -4,4 +4,4 @@ image:
 reloader:
   autoReloadAll: true
   isArgoRollouts: true
-  #namespaceSelector: "development,staging,production"
+  namespaceSelector: "development,staging,production"
