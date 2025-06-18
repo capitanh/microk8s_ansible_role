@@ -4,4 +4,4 @@ image:
 reloader:
   autoReloadAll: true
   isArgoRollouts: true
-  namespaceSelector: "kubernetes.io/metadata.name=production"
+  namespaceSelector: "kubernetes.io/metadata.name=development,kubernetes.io/metadata.name=staging,kubernetes.io/metadata.name=production"
