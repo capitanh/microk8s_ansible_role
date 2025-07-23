@@ -1,7 +1,15 @@
 # Ref: https://github.com/stakater/Reloader/blob/master/deployments/kubernetes/chart/reloader/values.yaml
 image:
-  tag: v1.4.1
+  tag: v1.4.5
 reloader:
   autoReloadAll: true
   isArgoRollouts: true
   namespaceSelector: "kubernetes.io/metadata.name in (development,staging,production)"
+  deployment:
+    resources:
+      limits:
+        cpu: "100m"
+        memory: "512Mi"
+      requests:
+        cpu: "10m"
+        memory: "128Mi"
