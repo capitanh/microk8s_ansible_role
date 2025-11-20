@@ -3,9 +3,8 @@
     classic: yes
     name: helm
 
-- name: Install Helm Diff
-  kubernetes.core.helm_plugin:
-    state: present
-    plugin_path: https://github.com/databus23/helm-diff
-    validate_certs: false
-  become_user: "{{admin_user}}"
+#- name: Install Helm Diff
+#  kubernetes.core.helm_plugin:
+#    state: present
+#    plugin_path: https://github.com/databus23/helm-diff
+#  become_user: "{{admin_user}}"
