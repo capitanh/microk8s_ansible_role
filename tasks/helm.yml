@@ -1,5 +1,5 @@
 - name: Install helm snap package
-  snap:
+  community.general.snap:
     classic: yes
     name: helm
     channel: latest/edge
