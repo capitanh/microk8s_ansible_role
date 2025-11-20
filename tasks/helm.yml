@@ -7,6 +7,4 @@
   kubernetes.core.helm_plugin:
     state: present
     plugin_path: https://github.com/databus23/helm-diff
-    options:
-      - verify=false
   become_user: "{{admin_user}}"
