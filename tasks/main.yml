@@ -42,6 +42,7 @@
   with_items:
   - k9s.yml
   - kubectl.yml
-  - vcluster-cli.yml
+  #- vcluster-cli.yml
   - helm.yml
   - reloader.yml
+  - external-secrets-operator.yml
