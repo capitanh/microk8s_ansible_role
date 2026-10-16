@@ -1,5 +1,8 @@
 ---
 channel: "latest"
+helm_channel: "latest/stable"
+helm_diff_url: "https://github.com/databus23/helm-diff"
+helm_diff_version: "v3.12.5"
 
 # Default list of services to enable
 microk8s_services:

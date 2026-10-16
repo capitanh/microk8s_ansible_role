@@ -1,12 +1,46 @@
 - name: Install helm snap package
   community.general.snap:
     name: helm
-    channel: edge
-    classic: yes
+    channel: "{{ helm_channel }}"
+    classic: true
+
+- name: Check installed Helm plugins
+  ansible.builtin.command:
+    cmd: helm plugin list
+  become: true
+  become_user: "{{ admin_user }}"
+  register: helm_plugin_list
+  changed_when: false
+  failed_when: false
+
+- name: Check Helm version
+  ansible.builtin.command:
+    cmd: helm version --short
+  become: true
+  become_user: "{{ admin_user }}"
+  register: helm_version_result
+  changed_when: false
+  failed_when: false
+
+- name: Set Helm Diff verify flag for Helm 4+
+  ansible.builtin.set_fact:
+    helm_diff_verify_flag: "{{ ' --verify=false' if helm_version_result.stdout is defined and helm_version_result.stdout is search('^v([4-9]|[1-9][0-9]+)\\.') else '' }}"
+
+- name: Uninstall outdated Helm Diff
+  ansible.builtin.command:
+    cmd: helm plugin uninstall diff
+  become: true
+  become_user: "{{ admin_user }}"
+  when:
+    - helm_plugin_list.rc == 0
+    - "'diff' in helm_plugin_list.stdout | default('')"
+    - (helm_diff_version | regex_replace('^v', '')) not in helm_plugin_list.stdout | default('')
+  changed_when: true
 
 - name: Install Helm Diff
-  kubernetes.core.helm_plugin:
-    state: present
-    plugin_path: https://github.com/databus23/helm-diff
-    plugin_version: v3.12.5
-  become_user: "{{admin_user}}"
+  ansible.builtin.command:
+    cmd: helm plugin install {{ helm_diff_url }} --version={{ helm_diff_version }}{{ helm_diff_verify_flag }}
+  become: true
+  become_user: "{{ admin_user }}"
+  when: helm_plugin_list.rc != 0 or (helm_diff_version | regex_replace('^v', '')) not in helm_plugin_list.stdout | default('')
+  changed_when: true
