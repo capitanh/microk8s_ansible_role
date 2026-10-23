@@ -19,9 +19,12 @@ Shell completion and alias are for zsh, no bash config is affected
 
 Role Variables
 --------------
-Tne variables for this role are:
+The variables for this role are:
 ```yaml
-channe: latest     # Which snap channel to use when installing microk8s, defaults to latest
+channel: latest           # Which snap channel to use when installing microk8s, defaults to latest
+helm_channel: latest/stable  # Which snap channel to use when installing helm, defaults to stable
+helm_diff_url: "https://github.com/databus23/helm-diff"  # Helm Diff plugin source
+helm_diff_version: "v3.12.5"  # Helm Diff plugin version to install
 admin_user:        # User account to use
 microk8s_services: # Default list of services to enable
   - dns
